@@ -4,19 +4,16 @@
 void riempi_rand(int* a, int num);
 int genera_random();
 void stampa(int* a, int num);
-int ricerca_lineare_array(int* a, int n, int valore);
 
 int main(){
     int n = 10, ricercato = 23,
-    *arr = NULL;
+            *arr = NULL;
 
     printf("Numero elementi: %d\n", n);
     arr = (int *) malloc(sizeof(int) * n);
 
     riempi_rand(arr, n);
     stampa(arr, n);
-    printf("\nCerco elemento: %d...\n", ricercato);
-    printf("Trovato alla posizione: %d\n", ricerca_lineare_array(arr, n, ricercato) + 1);
 
     free(arr);
     return 0;
@@ -52,9 +49,3 @@ void stampa(int* a, int num){       // Esempio di algoritmo di VISITA
     }
     printf("]\n");
 }
-
-int ricerca_lineare_array(int* a, int n, int valore){
-    int i;
-    for (i = 0; ((i < n) && (a[i] != valore)); i++) {};  // Corpo vuoto {} perché tutto il lavoro è fatto nella condizione del for
-     return ((i < n) ? i : -1);
- }
