@@ -1,0 +1,3 @@
+C:/Users/giaco/Documents/AlgoStruDati/cmake-build-debug/CMakeFiles/AlgoStruDati.dir
+C:/Users/giaco/Documents/AlgoStruDati/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/giaco/Documents/AlgoStruDati/cmake-build-debug/CMakeFiles/rebuild_cache.dir
