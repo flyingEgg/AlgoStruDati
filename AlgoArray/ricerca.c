@@ -7,25 +7,20 @@ void stampa(int* a, int num);
 int ricerca_lineare_array(int* a, int n, int valore);
 int ricerca_binaria_array(int* a, int n, int valore);
 
-int main(){
-    int n = 10, ricercato = 47,
-    *arr = NULL;
+int main(int argc, char** argv){
+    if (argc != 3) {
+        printf("Uso: %s numero1 numero2\n", argv[0]);
+        return 1;
+    }
+
+    int n = atoi(argv[1]),
+        ricercato = atoi(argv[2]),
+        *arr = NULL;
 
     printf("Numero elementi: %d\n", n);
     arr = (int *) malloc(sizeof(int) * n);
 
     riempi_rand(arr, n);
-
-    /*arr[0] = 3;
-    arr[1] = 12,
-    arr[2] = 13,
-    arr[3] = 17,
-    arr[4] = 34,
-    arr[5] = 54,
-    arr[6] = 59,
-    arr[7] = 98,
-    arr[8] = 104,
-    arr[9] = 111;*/
 
     stampa(arr, n);
     printf("\nCerco elemento: %d...\n", ricercato);
