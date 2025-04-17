@@ -1,4 +1,4 @@
-ricercabinaria: ricerca.c Makefile
+ricerca: ricerca.c Makefile
 	gcc -ansi -Wall -O ricerca.c -o ricerca
 
 pulisci:
