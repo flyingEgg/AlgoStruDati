@@ -26,15 +26,17 @@ int main(int argc, char** argv){
 
     switch(algo){
         case 'i':
+            printf("\nInsert sort\n");
             insert_sort(arr, n);
             break;
         case 's':
+            printf("\nSelect sort\n");
             select_sort(arr, n);
             break;
         default:
             printf("\nAlgoritmo %c non riconosciuto\n", algo);
     }
-
+    printf("\nDopo: ");
     stampa(arr, n);
 
     free(arr);
@@ -84,5 +86,20 @@ void insert_sort(int* a, int n){
 }
 
 void select_sort(int* a, int n){
+    int valore_min,
+        indice_valore_min,
+        i,
+        j;
 
+    for(i = 0; i < n - 1; i++){
+        for (valore_min = a[i], indice_valore_min = i, j = i + 1; j < n; j++)
+            if(a[j] < valore_min){
+                valore_min = a[j];
+                indice_valore_min = j;
+            }
+        if(indice_valore_min != i){
+            a[indice_valore_min] = a[i];
+            a[i] = valore_min;
+        }
+    }
 }
