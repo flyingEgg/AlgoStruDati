@@ -1,6 +1,9 @@
 ricerca: ricerca.c Makefile
 	gcc -ansi -Wall -O ricerca.c -o ricerca
 
+ordina: sorts.c Makefile
+	gcc -ansi -Wall -O sorts.c -o ordina
+
 pulisci:
 	rm -f ricerca.o
 

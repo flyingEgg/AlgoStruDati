@@ -8,10 +8,6 @@ int ricerca_lineare_array(int* a, int n, int valore);
 int ricerca_binaria_array(int* a, int n, int valore);
 
 int main(int argc, char** argv){
-    if (argc != 3) {
-        printf("Uso: %s numero1 numero2\n", argv[0]);
-        return 1;
-    }
 
     int n = atoi(argv[1]),
         ricercato = atoi(argv[2]),
@@ -69,8 +65,10 @@ int ricerca_lineare_array(int* a, int n, int valore){
         i++)
         clock++;                    /*Corpo vuoto {} perché tutto il lavoro è fatto nella condizione del for*/
     printf("Clk lin: %d\n", clock);
-    return ((i < n) ? i : -1);
- }
+    return ((i < n) ? i : -1);              /* Se i < n, il ciclo for è terminato prima che i raggiungesse n perché è stato trovato "valore */
+ }                                          /* Se i >= n, il ciclo for è terminato perché i ha raggiunto n, quindi "valore" non è stato trovato (-1 valore convenzionale
+                                               che indica il fallimento nella ricerca) */
+
 
 int ricerca_binaria_array(int* a, int n, int valore){
     int sx, mx, dx, clock = 0;

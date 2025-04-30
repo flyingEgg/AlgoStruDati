@@ -4,15 +4,37 @@
 void riempi_rand(int* a, int num);
 int genera_random();
 void stampa(int* a, int num);
+void insert_sort(int* a, int n);
+void select_sort (int* a, int n);
 
-int main(){
-    int n = 10, ricercato = 23,
-            *arr = NULL;
+int main(int argc, char** argv){
+    if(argc < 3){
+        printf("Uso: ./ordina <n> <lettera-iniziale-algoritmo>\n");
+        exit(0);
+    }
+
+    int n = atoi(argv[1]), *arr = NULL;
+    char algo = argv[2][0];
+
 
     printf("Numero elementi: %d\n", n);
     arr = (int *) malloc(sizeof(int) * n);
 
     riempi_rand(arr, n);
+    printf("Prima: ");
+    stampa(arr, n);
+
+    switch(algo){
+        case 'i':
+            insert_sort(arr, n);
+            break;
+        case 's':
+            select_sort(arr, n);
+            break;
+        default:
+            printf("\nAlgoritmo %c non riconosciuto\n", algo);
+    }
+
     stampa(arr, n);
 
     free(arr);
@@ -31,14 +53,14 @@ int genera_random(){
     val = (rand() % 100);
     aux = (rand() % 20);
     if(aux % 2){
-        val + rand();
+        val += rand() % 40;
     } else {
-        val - rand();
+        val -= rand() % 24;
     }
     return val;
 }
 
-void stampa(int* a, int num){       // Esempio di algoritmo di VISITA
+void stampa(int* a, int num){       /*Esempio di algoritmo di VISITA*/
     int i;
     printf("\n[");
     for(i = 0; i < num; i++){
@@ -48,4 +70,19 @@ void stampa(int* a, int num){       // Esempio di algoritmo di VISITA
             printf("%d,",a[i]);
     }
     printf("]\n");
+}
+
+void insert_sort(int* a, int n){
+    int valore_ins, i, j;
+
+    for(i = 0; i < n; i++){
+        for(valore_ins = a[i], j = i - 1; ((j >= 0) && (a[j] > valore_ins)); j--)
+            a[j + 1] = a[j];
+        if(j + 1 != i)
+            a[j + 1] = valore_ins;
+    }
+}
+
+void select_sort(int* a, int n){
+
 }
