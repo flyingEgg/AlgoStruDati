@@ -6,6 +6,7 @@ int genera_random();
 void stampa(int* a, int num);
 void insert_sort(int* a, int n);
 void select_sort (int* a, int n);
+void bubble_sort(int*, int n);
 
 int main(int argc, char** argv){
     if(argc < 3){
@@ -32,6 +33,10 @@ int main(int argc, char** argv){
         case 's':
             printf("\nSelect sort\n");
             select_sort(arr, n);
+            break;
+        case 'b':
+            printf("\nBubble sort\n");
+            bubble_sort(arr, n);
             break;
         default:
             printf("\nAlgoritmo %c non riconosciuto\n", algo);
@@ -101,5 +106,20 @@ void select_sort(int* a, int n){
             a[indice_valore_min] = a[i];
             a[i] = valore_min;
         }
+    }
+}
+
+void bubble_sort(int* a, int n){
+    int tmp,
+        i,
+        j;
+
+    for (i = 1; i < n; i++) {
+        for (j = n - 1 ; j >= i; j--)
+            if(a[j] < a[j - 1]){
+                tmp = a[j - 1];
+                a[j - 1] = a[j];
+                a[j] = tmp;
+            }
     }
 }
