@@ -1,12 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void riempi_rand(int* a, int num);
 int genera_random();
+void menu(char algo, int* a, int n);
+void riempi_rand(int* a, int num);
 void stampa(int* a, int num);
 void insert_sort(int* a, int n);
 void select_sort (int* a, int n);
 void bubble_sort(int*, int n);
+void merge_sort(int*, int sx, int dx);
+void merge(int*, int sx, int mx, int dx);
 
 int main(int argc, char** argv){
     if(argc < 3){
@@ -25,6 +28,16 @@ int main(int argc, char** argv){
     printf("Prima: ");
     stampa(arr, n);
 
+    menu(algo, arr, n);
+
+    printf("\nDopo: ");
+    stampa(arr, n);
+
+    free(arr);
+    return 0;
+}
+
+void menu(char algo, int* arr, int n){
     switch(algo){
         case 'i':
             printf("\nInsert sort\n");
@@ -38,14 +51,13 @@ int main(int argc, char** argv){
             printf("\nBubble sort\n");
             bubble_sort(arr, n);
             break;
+        case 'm':
+            printf("\nMerge sort\n");
+            merge_sort(arr, 0, n - 1);
+            break;
         default:
             printf("\nAlgoritmo %c non riconosciuto\n", algo);
     }
-    printf("\nDopo: ");
-    stampa(arr, n);
-
-    free(arr);
-    return 0;
 }
 
 void riempi_rand(int* a, int num){
@@ -109,6 +121,7 @@ void select_sort(int* a, int n){
     }
 }
 
+
 void bubble_sort(int* a, int n){
     int tmp,
         i,
@@ -122,4 +135,44 @@ void bubble_sort(int* a, int n){
                 a[j] = tmp;
             }
     }
+}
+
+void merge_sort(int* a, int sx, int dx){
+    int mx;
+    if(sx < dx){
+        mx = (sx + dx) / 2;
+        merge_sort(a, sx, mx);
+        merge_sort(a, mx + 1, dx);
+        merge(a, sx, mx, dx);
+    }
+}
+
+void merge(int* a, int sx, int mx, int dx){
+    int *b,
+        i,
+        j,
+        k;
+
+    b = (int *)calloc(dx + 1, sizeof(int));
+    for(i = sx, j = mx + 1, k = 0; ((i <= mx) && (j <= dx)); k++)
+        if (a[i] <= a[j]){
+            b[k] = a[i];
+            i++;
+        } else {
+            b[k] = a[j];
+            j++;
+        }
+    while (i <= mx){
+        b[k] = a[i];
+        i++;
+        k++;
+    }
+    while (j <= dx){
+        b[k] = a[j];
+        j++;
+        k++;
+    }
+    for(k = sx; k <= dx; k++)
+        a[k] = b[k - sx];
+    free(b);
 }
