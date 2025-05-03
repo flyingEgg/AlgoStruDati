@@ -147,32 +147,57 @@ void merge_sort(int* a, int sx, int dx){
     }
 }
 
-void merge(int* a, int sx, int mx, int dx){
-    int *b,
-        i,
-        j,
-        k;
+void merge(int* a, int sx, int mx, int dx) {
+    int *b, i, j, k;
+
+    printf("\n--- INIZIO MERGE ---");
+    printf("\nSottoarray sinistro: ");
+    stampa(a + sx, mx - sx + 1);
+    printf("Sottoarray destro: ");
+    stampa(a + mx + 1, dx - mx);
 
     b = (int *)calloc(dx + 1, sizeof(int));
-    for(i = sx, j = mx + 1, k = 0; ((i <= mx) && (j <= dx)); k++)
-        if (a[i] <= a[j]){
+
+    printf("\nInizio fusione...\n");
+    for(i = sx, j = mx + 1, k = 0; ((i <= mx) && (j <= dx)); k++) {
+        if (a[i] <= a[j]) {
             b[k] = a[i];
+            printf("Prendo %d dalla sinistra -> ", a[i]);
             i++;
         } else {
             b[k] = a[j];
+            printf("Prendo %d dalla destra -> ", a[j]);
             j++;
         }
-    while (i <= mx){
+        stampa(b, k + 1);
+    }
+
+    printf("\nElementi rimanenti a sinistra: ");
+    while (i <= mx) {
         b[k] = a[i];
+        printf("%d ", a[i]);
         i++;
         k++;
     }
-    while (j <= dx){
+
+    printf("\nElementi rimanenti a destra: ");
+    while (j <= dx) {
         b[k] = a[j];
+        printf("%d ", a[j]);
         j++;
         k++;
     }
-    for(k = sx; k <= dx; k++)
+
+    printf("\n\nArray temporaneo completo: ");
+    stampa(b, dx - sx + 1);
+
+    for(k = sx; k <= dx; k++) {
         a[k] = b[k - sx];
+    }
+
+    printf("Array dopo il merge: ");
+    stampa(a + sx, dx - sx + 1);
+    printf("--- FINE MERGE ---\n\n");
+
     free(b);
 }
