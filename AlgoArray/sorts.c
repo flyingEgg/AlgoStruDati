@@ -10,6 +10,7 @@ void select_sort (int* a, int n);
 void bubble_sort(int*, int n);
 void merge_sort(int*, int sx, int dx);
 void merge(int*, int sx, int mx, int dx);
+void quick_sort(int*, int sx, int dx);
 
 int main(int argc, char** argv){
     if(argc < 3){
@@ -54,6 +55,10 @@ void menu(char algo, int* arr, int n){
         case 'm':
             printf("\nMerge sort\n");
             merge_sort(arr, 0, n - 1);
+            break;
+        case 'q':
+            printf("\nQuick sort\n");
+            quick_sort(arr, 0, n - 1);
             break;
         default:
             printf("\nAlgoritmo %c non riconosciuto\n", algo);
@@ -175,4 +180,29 @@ void merge(int* a, int sx, int mx, int dx){
     for(k = sx; k <= dx; k++)
         a[k] = b[k - sx];
     free(b);
+}
+
+void quick_sort(int* a, int sx, int dx){
+    int pivot, tmp, i, j;
+
+    for (pivot = a[(sx + dx) / 2], i = sx, j = dx; (i <= j);) {
+        while (a[i] < pivot)
+            i++;
+        while (a[j] > pivot)
+            j--;
+        if(i <= j){
+            if(i < j){
+                tmp = a[i];
+                a[i] = a[j];
+                a[j] = tmp;
+            }
+            i++;
+            j--;
+        }
+    }
+
+    if(sx < j)
+        quick_sort(a, sx, j);
+    if (i < dx)
+        quick_sort(a, i, dx);
 }
