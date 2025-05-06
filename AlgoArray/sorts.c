@@ -2,15 +2,17 @@
 #include <stdlib.h>
 
 int genera_random();
-void menu(char algo, int* a, int n);
-void riempi_rand(int* a, int num);
-void stampa(int* a, int num);
-void insert_sort(int* a, int n);
-void select_sort (int* a, int n);
+void menu(char algo, int*, int n);
+void riempi_rand(int*, int num);
+void stampa(int*, int num);
+void insert_sort(int*, int n);
+void select_sort (int*, int n);
 void bubble_sort(int*, int n);
 void merge_sort(int*, int sx, int dx);
 void merge(int*, int sx, int mx, int dx);
 void quick_sort(int*, int sx, int dx);
+void heap_sort(int*, int n);
+void setaccia_heap(int*, int sx, int dx);
 
 int main(int argc, char** argv){
     if(argc < 3){
@@ -60,6 +62,10 @@ void menu(char algo, int* arr, int n){
             printf("\nQuick sort\n");
             quick_sort(arr, 0, n - 1);
             break;
+        case 'h':
+            printf("\nHeap sort\n");
+            heap_sort(arr, n);
+            break;
         default:
             printf("\nAlgoritmo %c non riconosciuto\n", algo);
     }
@@ -99,7 +105,7 @@ void stampa(int* a, int num){       /*Esempio di algoritmo di VISITA*/
 void insert_sort(int* a, int n){
     int valore_ins, i, j;
 
-    for(i = 0; i < n; i++){
+    for(i = 1; i < n; i++){
         for(valore_ins = a[i], j = i - 1; ((j >= 0) && (a[j] > valore_ins)); j--)
             a[j + 1] = a[j];
         if(j + 1 != i)
@@ -192,9 +198,13 @@ void quick_sort(int* a, int sx, int dx){
             j--;
         if(i <= j){
             if(i < j){
+                printf("\ntemp arr: ");
+                stampa(a, dx + 1);
                 tmp = a[i];
                 a[i] = a[j];
                 a[j] = tmp;
+                printf("\ntemp arr: ");
+                stampa(a, dx + 1);
             }
             i++;
             j--;
@@ -205,4 +215,37 @@ void quick_sort(int* a, int sx, int dx){
         quick_sort(a, sx, j);
     if (i < dx)
         quick_sort(a, i, dx);
+}
+
+void heap_sort(int a[], int n){
+    int tmp, sx, dx;
+
+    /* Prima fase: trasformare l'array in heap */
+    for(sx = n / 2; (sx >= 1); sx--)
+        setaccia_heap(a, sx, n);
+
+    /* Seconda fase: ordinarlo mantenendo organizzazione ad heap */
+    for (dx = n; (dx > 1); dx--){
+        tmp = a[1];
+        a[1] = a[dx];
+        a[dx] = tmp;
+        setaccia_heap(a, 1, dx - 1);
+    }
+}
+
+void setaccia_heap(int a[], int sx, int dx){
+    int nuovo_valore, i, j;
+
+    for(nuovo_valore = a[sx], i = sx, j = 2 * i; (j <= dx);){
+        if((j < dx) && (a[j + 1] > a[j]))
+            j++;
+        if(nuovo_valore < a[j]){
+            a[i] = a[j];
+            i = j;
+            j = 2 * i;
+        } else
+            j = dx + i;
+    }
+    if (i != sx)
+        a[i] = nuovo_valore;
 }
