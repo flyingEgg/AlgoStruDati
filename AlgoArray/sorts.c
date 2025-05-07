@@ -12,7 +12,7 @@ void merge_sort(int*, int sx, int dx);
 void merge(int*, int sx, int mx, int dx);
 void quick_sort(int*, int sx, int dx);
 void heap_sort(int*, int n);
-void setaccia_heap(int*, int sx, int dx);
+void setaccia_heap(int *a, int n, int i);
 
 int main(int argc, char** argv){
     if(argc < 3){
@@ -81,7 +81,7 @@ void riempi_rand(int* a, int num){
 int genera_random(){
     int val, aux;
     val = (rand() % 100);
-    aux = (rand() % 20);
+    aux = (rand() % 13);
     if(aux % 2){
         val += rand() % 40;
     } else {
@@ -221,31 +221,34 @@ void heap_sort(int a[], int n){
     int tmp, sx, dx;
 
     /* Prima fase: trasformare l'array in heap */
-    for(sx = n / 2; (sx >= 1); sx--)
+    for(sx = n / 2 - 1 ; (sx >= 0); sx--)
         setaccia_heap(a, sx, n);
 
     /* Seconda fase: ordinarlo mantenendo organizzazione ad heap */
-    for (dx = n; (dx > 1); dx--){
-        tmp = a[1];
-        a[1] = a[dx];
+    for (dx = n - 1; (dx > 0); dx--){
+        tmp = a[0];
+        a[0] = a[dx];
         a[dx] = tmp;
-        setaccia_heap(a, 1, dx - 1);
+        setaccia_heap(a, dx, 0);
     }
 }
 
-void setaccia_heap(int a[], int sx, int dx){
-    int nuovo_valore, i, j;
+void setaccia_heap(int a[], int n, int i){
+    int maxV = i, sx = 2 * i + 1, dx = 2 * i + 2;
 
-    for(nuovo_valore = a[sx], i = sx, j = 2 * i; (j <= dx);){
-        if((j < dx) && (a[j + 1] > a[j]))
-            j++;
-        if(nuovo_valore < a[j]){
-            a[i] = a[j];
-            i = j;
-            j = 2 * i;
-        } else
-            j = dx + i;
+    if (sx < n && a[sx] > a[maxV]) {
+        maxV = sx;
     }
-    if (i != sx)
-        a[i] = nuovo_valore;
+
+    if (dx < n && a[dx] > a[maxV]) {
+        maxV = dx;
+    }
+
+    if (maxV != i) {
+        int temp = a[i];
+        a[i] = a[maxV];
+        a[maxV] = temp;
+
+        setaccia_heap(a, n, maxV);
+    }
 }
