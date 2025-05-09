@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int genera_random();
 void menu(char algo, int*, int n);
@@ -23,6 +24,7 @@ int main(int argc, char** argv){
     int n = atoi(argv[1]), *arr = NULL;
     char algo = argv[2][0];
 
+    srand(time(NULL));
 
     printf("Numero elementi: %d\n", n);
     arr = (int *) malloc(sizeof(int) * n);
@@ -191,20 +193,20 @@ void merge(int* a, int sx, int mx, int dx){
 void quick_sort(int* a, int sx, int dx){
     int pivot, tmp, i, j;
 
-    for (pivot = a[(sx + dx) / 2], i = sx, j = dx; (i <= j);) {
+    for (pivot = a[rand() % (dx - sx + 1) + sx], i = sx, j = dx; (i <= j);) {
         while (a[i] < pivot)
             i++;
         while (a[j] > pivot)
             j--;
         if(i <= j){
             if(i < j){
-                printf("\ntemp arr: ");
-                stampa(a, dx + 1);
+                /*printf("\ntemp arr: ");
+                stampa(a, dx + 1);*/
                 tmp = a[i];
                 a[i] = a[j];
                 a[j] = tmp;
-                printf("\ntemp arr: ");
-                stampa(a, dx + 1);
+                /*printf("\ntemp arr: ");
+                stampa(a, dx + 1);*/
             }
             i++;
             j--;
@@ -221,34 +223,31 @@ void heap_sort(int a[], int n){
     int tmp, sx, dx;
 
     /* Prima fase: trasformare l'array in heap */
-    for(sx = n / 2 - 1 ; (sx >= 0); sx--)
+    for(sx = n / 2; (sx >= 1); sx--)
         setaccia_heap(a, sx, n);
 
     /* Seconda fase: ordinarlo mantenendo organizzazione ad heap */
-    for (dx = n - 1; (dx > 0); dx--){
-        tmp = a[0];
-        a[0] = a[dx];
+    for (dx = n; (dx > 1); dx--){
+        tmp = a[1];
+        a[1] = a[dx];
         a[dx] = tmp;
-        setaccia_heap(a, dx, 0);
+        setaccia_heap(a, 1, dx - 1);
     }
 }
 
-void setaccia_heap(int a[], int n, int i){
-    int maxV = i, sx = 2 * i + 1, dx = 2 * i + 2;
+void setaccia_heap(int a[], int sx, int dx) {
+    int nuovo_valore, i, j;
 
-    if (sx < n && a[sx] > a[maxV]) {
-        maxV = sx;
+    for (nuovo_valore = a[sx], i = sx, j = 2 * i; (j <= dx);) {
+        if ((j < dx) && (a[j + 1] > a[j]))
+            j++;
+        if (nuovo_valore < a[j]) {
+            a[i] = a[j];
+            i = j;
+            j = 2 * i;
+        } else
+            j = dx + 1;
     }
-
-    if (dx < n && a[dx] > a[maxV]) {
-        maxV = dx;
-    }
-
-    if (maxV != i) {
-        int temp = a[i];
-        a[i] = a[maxV];
-        a[maxV] = temp;
-
-        setaccia_heap(a, n, maxV);
-    }
+    if (i != sx)
+        a[i] = nuovo_valore;
 }
