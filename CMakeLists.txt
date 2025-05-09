@@ -5,4 +5,5 @@ set(CMAKE_C_STANDARD 11)
 
 # Aggiungi la cartella src dove si trovano i tuoi file .c
 add_executable(AlgoStruDati AlgoArray/ricerca.c
-        AlgoArray/sorts.c)
+        AlgoArray/sorts.c
+        Esercizi/pila_int_rand.c)
