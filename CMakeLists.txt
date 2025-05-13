@@ -10,4 +10,5 @@ add_executable(AlgoStruDati AlgoArray/ricerca.c
         Esercizi/esercizio_array/esercizio_array.c
         AlgoListe/liste.c
         AlgoListe/code.c
-        AlgoListe/pile.c)
+        AlgoListe/pile.c
+        Prove/coda_stringhe.c)

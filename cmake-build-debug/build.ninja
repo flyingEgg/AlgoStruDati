@@ -79,17 +79,23 @@ build CMakeFiles/AlgoStruDati.dir/AlgoListe/liste.c.obj: C_COMPILER__AlgoStruDat
   OBJECT_DIR = CMakeFiles\AlgoStruDati.dir
   OBJECT_FILE_DIR = CMakeFiles\AlgoStruDati.dir\AlgoListe
 
-build CMakeFiles/AlgoStruDati.dir/AlgoListe/Code.c.obj: C_COMPILER__AlgoStruDati_unscanned_Debug C$:/Users/giaco/Documents/AlgoStruDati/AlgoListe/Code.c || cmake_object_order_depends_target_AlgoStruDati
-  DEP_FILE = CMakeFiles\AlgoStruDati.dir\AlgoListe\Code.c.obj.d
+build CMakeFiles/AlgoStruDati.dir/AlgoListe/code.c.obj: C_COMPILER__AlgoStruDati_unscanned_Debug C$:/Users/giaco/Documents/AlgoStruDati/AlgoListe/code.c || cmake_object_order_depends_target_AlgoStruDati
+  DEP_FILE = CMakeFiles\AlgoStruDati.dir\AlgoListe\code.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\AlgoStruDati.dir
   OBJECT_FILE_DIR = CMakeFiles\AlgoStruDati.dir\AlgoListe
 
-build CMakeFiles/AlgoStruDati.dir/AlgoListe/Pile.c.obj: C_COMPILER__AlgoStruDati_unscanned_Debug C$:/Users/giaco/Documents/AlgoStruDati/AlgoListe/Pile.c || cmake_object_order_depends_target_AlgoStruDati
-  DEP_FILE = CMakeFiles\AlgoStruDati.dir\AlgoListe\Pile.c.obj.d
+build CMakeFiles/AlgoStruDati.dir/AlgoListe/pile.c.obj: C_COMPILER__AlgoStruDati_unscanned_Debug C$:/Users/giaco/Documents/AlgoStruDati/AlgoListe/pile.c || cmake_object_order_depends_target_AlgoStruDati
+  DEP_FILE = CMakeFiles\AlgoStruDati.dir\AlgoListe\pile.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\AlgoStruDati.dir
   OBJECT_FILE_DIR = CMakeFiles\AlgoStruDati.dir\AlgoListe
+
+build CMakeFiles/AlgoStruDati.dir/Prove/coda_stringhe.c.obj: C_COMPILER__AlgoStruDati_unscanned_Debug C$:/Users/giaco/Documents/AlgoStruDati/Prove/coda_stringhe.c || cmake_object_order_depends_target_AlgoStruDati
+  DEP_FILE = CMakeFiles\AlgoStruDati.dir\Prove\coda_stringhe.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\AlgoStruDati.dir
+  OBJECT_FILE_DIR = CMakeFiles\AlgoStruDati.dir\Prove
 
 
 # =============================================================================
@@ -99,7 +105,7 @@ build CMakeFiles/AlgoStruDati.dir/AlgoListe/Pile.c.obj: C_COMPILER__AlgoStruDati
 #############################################
 # Link the executable AlgoStruDati.exe
 
-build AlgoStruDati.exe: C_EXECUTABLE_LINKER__AlgoStruDati_Debug CMakeFiles/AlgoStruDati.dir/AlgoArray/ricerca.c.obj CMakeFiles/AlgoStruDati.dir/AlgoArray/sorts.c.obj CMakeFiles/AlgoStruDati.dir/Esercizi/pila_int_rand.c.obj CMakeFiles/AlgoStruDati.dir/Esercizi/esercizio_array/esercizio_array.c.obj CMakeFiles/AlgoStruDati.dir/AlgoListe/liste.c.obj CMakeFiles/AlgoStruDati.dir/AlgoListe/Code.c.obj CMakeFiles/AlgoStruDati.dir/AlgoListe/Pile.c.obj
+build AlgoStruDati.exe: C_EXECUTABLE_LINKER__AlgoStruDati_Debug CMakeFiles/AlgoStruDati.dir/AlgoArray/ricerca.c.obj CMakeFiles/AlgoStruDati.dir/AlgoArray/sorts.c.obj CMakeFiles/AlgoStruDati.dir/Esercizi/pila_int_rand.c.obj CMakeFiles/AlgoStruDati.dir/Esercizi/esercizio_array/esercizio_array.c.obj CMakeFiles/AlgoStruDati.dir/AlgoListe/liste.c.obj CMakeFiles/AlgoStruDati.dir/AlgoListe/code.c.obj CMakeFiles/AlgoStruDati.dir/AlgoListe/pile.c.obj CMakeFiles/AlgoStruDati.dir/Prove/coda_stringhe.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\AlgoStruDati.dir
