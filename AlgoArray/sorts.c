@@ -85,7 +85,7 @@ int genera_random(){
     val = (rand() % 100);
     aux = (rand() % 13);
     if(aux % 2){
-        val += rand() % 40;
+        val += rand() % 41;
     } else {
         val -= rand() % 24;
     }

@@ -82,7 +82,7 @@ int ricerca_binaria_array(int* a, int n, int valore){
         else
             sx = mx + 1;
     }
-    printf("\nClk bin: %d", clock);
+    printf("\nClk bin: %d",  clock);
     return ((sx <= dx) ?
             mx:
             -1);

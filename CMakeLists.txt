@@ -9,5 +9,5 @@ add_executable(AlgoStruDati AlgoArray/ricerca.c
         Esercizi/pila_int_rand.c
         Esercizi/esercizio_array/esercizio_array.c
         AlgoListe/liste.c
-        AlgoListe/Code.c
-        AlgoListe/Pile.c)
+        AlgoListe/code.c
+        AlgoListe/pile.c)
