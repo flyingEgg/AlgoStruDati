@@ -12,4 +12,6 @@ add_executable(AlgoStruDati AlgoArray/ricerca.c
         AlgoListe/code.c
         AlgoListe/pile.c
         Prove/coda_stringhe_file/coda_stringhe_file.c
-        Prove/coda_stringhe_rand/coda_stringhe_rand.c)
+        Prove/coda_stringhe_rand/coda_stringhe_rand.c
+        AlgoAlberi/alberi_binari.c
+        Prove/array_dado/array_dado.c)
