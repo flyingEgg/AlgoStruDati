@@ -40,6 +40,7 @@ void accoda(elem_lista_p **uscita, elem_lista_p **entrata, char valore[]){
     nuovo_p = (elem_lista_p *) malloc(sizeof(elem_lista_p));
 
     strcpy(nuovo_p -> dato, valore);
+    nuovo_p -> succ_p = NULL;
 
     if(*entrata != NULL){
         (*entrata) -> succ_p = nuovo_p;

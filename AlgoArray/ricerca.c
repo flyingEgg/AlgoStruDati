@@ -63,11 +63,11 @@ int ricerca_lineare_array(int* a, int n, int valore){
     for (i = 0;
         ((i < n) && (a[i] != valore));
         i++)
-        clock++;                    /*Corpo vuoto {} perché tutto il lavoro è fatto nella condizione del for*/
+        clock++;                                        /*Corpo vuoto {} perché tutto il lavoro è fatto nella condizione del for*/
     printf("Clk lin: %d\n", clock);
-    return ((i < n) ? i : -1);              /* Se i < n, il ciclo for è terminato prima che i raggiungesse n perché è stato trovato "valore */
- }                                          /* Se i >= n, il ciclo for è terminato perché i ha raggiunto n, quindi "valore" non è stato trovato (-1 valore convenzionale
-                                               che indica il fallimento nella ricerca) */
+    return ((i < n) ? i : -1);                                  /* Se i < n, il ciclo for è terminato prima che i raggiungesse n perché è stato trovato "valore */
+ }                                                              /* Se i >= n, il ciclo for è terminato perché i ha raggiunto n, quindi "valore" non è stato trovato (-1 valore convenzionale
+                                                                   che indica il fallimento nella ricerca) */
 
 
 int ricerca_binaria_array(int* a, int n, int valore){

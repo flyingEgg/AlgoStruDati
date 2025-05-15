@@ -6,11 +6,44 @@ void genera_random(int n, int*);
 void stampa_array(int n, int*);
 void quicksort(int*, int sx, int dx);
 void reverse_quicksort(int* , int sx, int dx);
+int inserimento();
+int ricerca_binaria_array(int*, int n, int valore);
 
 int main(){
-    int n, *arr, esito_lettura, acquisizione_errata;
+    int n, x, pos_x, *arr;
 
     srand(time(NULL));
+
+    n = inserimento();
+
+
+    arr = (int *) malloc(sizeof (int) * n);
+
+    genera_random(n, arr);
+    stampa_array(n, arr);
+
+    reverse_quicksort(arr, 0, n - 1);
+    stampa_array(n, arr);
+    quicksort(arr, 0, n - 1);
+
+    stampa_array(n, arr);
+
+    x = inserimento();
+
+
+    pos_x = ricerca_binaria_array(arr, n, x);
+
+    if(pos_x != -1)
+        printf("Trovato alla posizione %d\n", pos_x);
+    else
+        printf("Elemento non trovato.\n");
+
+
+    return 0;
+}
+
+int inserimento(){
+    int esito_lettura, acquisizione_errata, n;
 
     do{
         printf("Digitare un numero ");
@@ -23,19 +56,7 @@ int main(){
         while (getchar() != '\n');
     } while (acquisizione_errata);
 
-
-    arr = (int *) malloc(sizeof (int) * n);
-
-    genera_random(n, arr);
-    stampa_array(n, arr);
-
-    quicksort(arr, 0, n - 1);
-
-    stampa_array(n, arr);
-    reverse_quicksort(arr, 0, n - 1);
-    stampa_array(n, arr);
-
-    return 0;
+    return n;
 }
 
 void genera_random(int n, int* arr){
@@ -59,28 +80,31 @@ void stampa_array(int n, int* arr){
 }
 
 void quicksort(int* a, int sx, int dx){
-    int i, j, pivot, tmp;
+    int pivot, tmp, i, j;
 
-    for(pivot = a[(sx + dx) / 2], i = sx, j = dx; i <= j;){
-        while(a[i] < pivot)
+    for (pivot = a[(sx + dx) / 2], i = sx, j = dx; (i <= j);) {
+        while (a[i] < pivot)
             i++;
         while (a[j] > pivot)
             j--;
-
         if(i <= j){
             if(i < j){
+                /*printf("\ntemp arr: ");
+                stampa(a, dx + 1);*/
                 tmp = a[i];
                 a[i] = a[j];
                 a[j] = tmp;
+                /*printf("\ntemp arr: ");
+                stampa(a, dx + 1);*/
             }
             i++;
             j--;
         }
     }
 
-    if (sx < j)
+    if(sx < j)
         quicksort(a, sx, j);
-    if(dx < i)
+    if (i < dx)
         quicksort(a, i, dx);
 }
 
@@ -110,4 +134,21 @@ void reverse_quicksort(int* a, int sx, int dx){
         reverse_quicksort(a, sx, j);
     if(dx < i)
         reverse_quicksort(a, i, dx);
+}
+
+int ricerca_binaria_array(int* a, int n, int valore){
+    int sx, mx, dx;
+
+    for ( sx = 0, dx = n - 1, mx = (sx + dx) / 2;
+          ((sx <= dx) && (a[mx] != valore));
+          mx = (sx + dx) / 2){
+        if(a[mx] > valore)
+            dx = mx - 1;
+        else
+            sx = mx + 1;
+    }
+
+    return ((sx <= dx) ?
+            mx:
+            -1);
 }
