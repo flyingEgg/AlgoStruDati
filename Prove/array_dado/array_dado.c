@@ -6,7 +6,7 @@
 /* Definizioni firme delle funzioni */
 void lancio(int n_e, int n_l, int *somme);
 void stampa_array(int n, int *arr);
-void quick_sort(int sx, int dx, int *arr);
+void quick_sort(int *arr, int sx, int dx);
 double media(int n, int *arr);
 
 /* Funzione principale */
@@ -23,7 +23,7 @@ int main(int argc, char **argv){
     lancio(n_e, n_l, somme_esiti);
     stampa_array(n_e, somme_esiti);
     printf("Ordinamento array...\n");
-    quick_sort(0, n_e - 1, somme_esiti);
+    quick_sort(somme_esiti, 0, n_e - 1);
     printf("\nArray ordinato: ");
     stampa_array(n_e, somme_esiti);
 
@@ -67,10 +67,10 @@ void lancio(int n_e, int n_l, int *somme){
 }
 
 /* Ordinamento quick sort dell'array delle somme degli esiti (pivot scelto casualmente tra sx e dx) */
-void quick_sort(int sx, int dx, int *arr){
-    int i, j, tmp, pivot;
+void quick_sort(int *arr, int sx, int dx){
+    int i, j, pivot, tmp;
 
-    for(pivot = arr[(rand() % dx - sx + 1) + sx], i = sx, j = dx; (i <= j);){
+    for(pivot = arr[rand() % (dx - sx + 1) + sx], i = sx, j = dx; (i <= j);){
         while (arr[i] < pivot)
             i++;
         while (arr[j] > pivot)
@@ -85,12 +85,11 @@ void quick_sort(int sx, int dx, int *arr){
             i++;
             j--;
         }
-    }
-    if (sx < j){
-        quick_sort(sx, j, arr);
-    }
-    if (i < dx){
-        quick_sort(i, dx, arr);
+
+        if(sx < j)
+            quick_sort(arr, sx, j);
+        if(i < dx)
+            quick_sort(arr, i, dx);
     }
 }
 
