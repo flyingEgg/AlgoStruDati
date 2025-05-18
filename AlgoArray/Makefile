@@ -4,6 +4,9 @@ ricerca: ricerca.c Makefile
 ordina: sorts.c Makefile
 	gcc -ansi -Wall -O sorts.c -o ordina
 
+debug_ordina: sorts.c Makefile
+	gcc -g sorts.c -o ordina
+
 pulisci:
 	rm -f ricerca.o
 
