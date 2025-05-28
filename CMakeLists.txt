@@ -17,4 +17,5 @@ add_executable(AlgoStruDati AlgoArray/ricerca.c
         Prove/array_dado/array_dado.c
         Prove/pile_rand/pile_rand.c
         Prove/bst_rand/bst_rand.c
-        Prove/pile_rand_coeffn/pile_rand_coeffn.c)
+        Prove/pile_rand_coeffn/pile_rand_coeffn.c
+        Prove/bst_rand1/bst_rand.c)
