@@ -6,7 +6,7 @@
 void stampa(int *arr, int n);
 void reverse_quicksort(int *arr, int sx, int dx);
 void selectsort(int *arr, int n);
-int ricerc_binaria(int *arr, int n);
+int ricerca_binaria(int *arr, int n, int valore);
 
 int main(int argc, char **argv){
     if(argc < 2){
@@ -16,7 +16,9 @@ int main(int argc, char **argv){
 
     int n,
         i,
-        *arr;
+        *arr,
+        ricercato,
+        esito_ricerca;
     char *nome_file = malloc(sizeof (char) * (strlen(argv[1]) + 1));
     FILE *file_p;
     srand(time(NULL));
@@ -38,16 +40,22 @@ int main(int argc, char **argv){
 
     stampa(arr, n);
 
-    selectsort(arr, n);
-
-    printf("Array ordinato (min -> max):\n");
-    stampa(arr, n);
-
     reverse_quicksort(arr, 0, n - 1);
-
     printf("Array ordinato (max -> min):\n");
     stampa(arr, n);
 
+    selectsort(arr, n);
+    printf("Array ordinato (min -> max):\n");
+    stampa(arr, n);
+
+    printf("Digitare un elemento da cercare:\n");
+    scanf("%d", &ricercato);
+
+    esito_ricerca = ricerca_binaria(arr, n, ricercato);
+    if(esito_ricerca != -1)
+        printf("Trovato in posizione: %d\n", esito_ricerca);
+    else
+        printf("Elemento non trovato.\n");
 
     free(nome_file);
     free(arr);
@@ -119,10 +127,18 @@ void selectsort(int *arr, int n){
     }
 }
 
-int ricerc_binaria(int *arr, int n){
+int ricerca_binaria(int *arr, int n, int valore){
     int sx, mx, dx;
 
-    for(sx = 0, dx = n, mx = (sx + dx)/2; sx <= dx; mx = (sx + dx) / 2){
-        if()
+    for(sx = 0, dx = n, mx = (sx + dx)/2;
+        ((sx <= dx) && (valore != arr[mx]));
+        mx = (sx + dx) / 2){
+
+        if(valore < arr[mx])
+            dx = mx - 1;
+        else
+            sx = mx + 1;
     }
+
+    return((sx <= dx) ? mx : -1);
 }
