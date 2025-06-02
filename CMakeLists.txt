@@ -20,4 +20,4 @@ add_executable(AlgoStruDati AlgoArray/ricerca.c
         Prove/pile_rand_coeffn/pile_rand_coeffn.c
         Prove/bst_rand1/bst_rand.c
         Prove/bst_file1/bst_file.c
-        Prove/code_rand/code_rand.c)
+        Prove/code_rand/code_rand.c Prove/pile_file/pile_file.c)
