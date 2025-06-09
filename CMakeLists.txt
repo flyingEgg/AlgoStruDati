@@ -24,4 +24,6 @@ add_executable(AlgoStruDati AlgoArray/ricerca.c
         Prove/bst_rand2/bst_rand.c
         Esercizi/grafo_prova/grafo_prova.c
         Prove/07-06-2023/pile_rand_coeff.c
-        Prove/simulazione_23-05-2023/min_max_coda.c)
+        Prove/simulazione_23-05-2023/min_max_coda.c
+        Prove/09-01-2024/bst_rand.c
+        Prove/10-07-2023/bst_interi_file.c)
